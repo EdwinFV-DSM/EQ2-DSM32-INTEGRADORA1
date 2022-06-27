@@ -1,0 +1,142 @@
+
+ 
+/* ==== Google font ==== */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700,900);
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic');
+/* --- pe-icon-7-stroke --- */
+@import url('pe-icon-7-stroke.css');
+@import url('helper.css');
+
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Lato',sans-serif;
+	font-weight: 300;
+    color: #666;
+    background-color: #fff;
+	font-size: 16px;
+    line-height: 1.6em;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+	font-size: 38px;
+}
+h2 {
+	font-size: 36px;
+}
+h3 {
+	font-size: 32px;
+}
+h4 {
+	font-size: 28px;
+}
+h5 {
+	font-size: 24px;
+}
+h6 {
+	font-size: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+	color: #111;
+}
+
+h1.h-xlight,h2.h-xlight,h3.h-xlight ,h4.h-xlight ,h5.h-xlight ,h6.h-xlight  {
+	font-weight: 200;
+}
+
+h1.h-light,h2.h-light,h3.h-light ,h4.h-light ,h5.h-light ,h6.h-light  {
+	font-weight: 300;
+}
+
+h1.h-bold,h2.h-bold,h3.h-bold ,h4.h-bold ,h5.h-bold ,h6.h-bold  {
+	font-weight: 600;
+}
+
+h1.font-light,h2.font-light,h3.font-light,h4.font-light,h5.font-light,h6.font-light {
+	color: #fff;
+}
+
+/* ===========================
+--- Intro - home video
+============================ */
+
+.morphext > span {
+	display: none;
+}
+
+.morphext > .animated {
+    display: inline-block;
+}
+
+#intro.home-video { 
+	position: relative; 
+	margin: 0 auto; 
+	text-align: center;
+	height: 0;
+	padding-top: 20%;
+	padding-bottom: 30%;
+	position: relative;
+	overflow: hidden;
+	
+}
+#intro.home-video .homevideo-container { height: 100%; width: 100%; position: absolute; z-index: 1; background-size: cover; }
+
+#intro.home-video .overlay { 
+	position: relative; 
+	height: 100%; 
+	z-index: 2; 
+	padding: 20% 0;
+
+}
+
+#intro.home-video .home-video-wrapper {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.bs-video {
+	height: 0;
+	padding-top: 25px;
+	padding-bottom: 67.5%;
+	margin-bottom: 10px;
+	position: relative;
+	overflow: hidden;
+}
+ 
+.bs-video.widescreen {
+	padding-bottom: 57.25%;
+}
+ 
+.bs-video.vimeo {
+	padding-top: 0;
+}
+
+.bs-video embed, .bs-video iframe, .bs-video object, .bs-video video {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.video-caption h1 {
+	text-transform: uppercase;
+}
