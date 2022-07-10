@@ -7,7 +7,9 @@
 @import url('pe-icon-7-stroke.css');
 @import url('helper.css');
 
-
+:root{
+    --color-default: #F2C75F;
+}
 body {
     width: 100%;
     height: 100%;
@@ -489,4 +491,199 @@ footer{
     color: rgb(0, 0, 0) !important;
     padding: 20px;
     font-family: SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+
+.about-us{
+    padding: 20px;
+    display: flex;
+}
+
+
+.about-us h3{
+    color: var(--color-default);
+    font-weight: bold;
+    text-align: center;
+}
+
+.about-us .iconos-about{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.about-us .iconos-about img{
+    width: 111px;
+    height: auto;
+}
+
+.about-us .iconos-about h6{
+    padding: 20px 0px 0px 0px;
+    font-weight: bold;
+    color: var(--color-default) !important;
+}
+.innovative{
+    padding: 20px;
+}
+
+.innovative h3{
+    color: var(--color-default);
+    font-weight: bold;
+    text-align: center;
+}
+
+/*mini-banner*/
+.mini-banner{
+    min-height: 166px;
+    margin-top: 40px;
+    background-image: url(../img/minibanner.png);
+    background-repeat: no-repeat;
+    background-position: 98.5% 0;
+    background-size: 12px;
+}
+.mini-banner img{
+    /* padding: 10px; 
+    margin: 10px; 
+    border: 2px solid black; 
+    float: right; 
+    width: 250px; */
+    width: 250px;
+    height: auto;
+    opacity: 100%;
+    transition: all 0.5s ease 0s;
+}
+
+.mini-banner img:hover{
+    /* padding: 10px; 
+    margin: 10px; 
+    border: 2px solid black; 
+    float: right; 
+    width: 250px; */
+    width: 250px;
+    height: auto;
+    opacity: 50%;
+    transition: all 0.5s ease 0s;
+}
+/*Fin banner*/
+
+/*footer*/
+footer{
+    background: #000000;
+    padding: 20px 0px 20px 0px;
+}
+
+footer h1{
+    text-align: center;
+    color: #ffffff;
+}
+footer a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.5s ease 0s;
+}
+
+footer a:hover{
+    text-decoration: none;
+    color: var(--color-default);
+    transition: all 0.5s ease 0s;
+    font-size: 1.2em;
+}
+footer .redes-sociales p{
+    color: white;
+}
+
+footer .redes-sociales a{
+    font-size: 1.2em;
+    padding: 0px 20px 0px 0px;
+    /* transition: all 0.5s ease 0s;
+    text-align: center; */
+}
+
+footer .redes-sociales a:hover{
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0px 20px 0px 0px;
+    /* border-block-end: var(--color-UTVT) 3px solid;
+    transition: all 0.5s ease 0s; */
+}
+
+footer .derechos p{
+    color: rgb(112, 112, 112);
+    text-align: center;
+}
+footer .derechos a{
+    color: rgb(112, 112, 112);
+    text-align: center;
+}
+
+footer .derechos a:hover{
+    color: var(--color-default);
+    text-align: center;
+    
+}
+
+footer .contacto p{
+    color: white;
+    padding: 5px;
+}
+
+footer .enlaces-rapidos{
+    display: block;
+    position: inherit;
+}
+
+footer .enlaces-rapidos p{
+    color: white;
+}
+
+footer .enlaces-rapidos li{
+    color: white;
+    list-style: none;
+}
+footer .col{
+    text-align: center;
+}
+
+/*exit*/
+.exit{
+    background-color: #f0f0f000;
+    padding: 22px 35px 22px;
+    text-align: center;
+}
+.exit p{
+    color: #8c8c8c;
+    border-right: 1px solid #b3b3b3;
+}
+.exit a{
+    text-decoration: none;
+    color: #8c8c8c;
+    transition: all 0.5s ease 0s;
+    border-right: 2px solid rgb(74 74 74);
+    padding: 8px;
+}
+
+.exit a:hover{
+    color: var(--color-default);
+    transition: all 0.5s ease 0s;
+    border-block-end: var(--color-default) 2px solid;
+}
+
+.user-actions li{
+    text-decoration: none;
+    list-style: none;
+}
+
+.user-actions a{
+    text-decoration: none;
+    color: #000000;
+    transition: all 0.5s ease 0s;
+}
+
+.user-actions a:hover{
+    text-decoration: none;
+    color: var(--color-default);
+    transition: all 0.5s ease 0s;
 }
