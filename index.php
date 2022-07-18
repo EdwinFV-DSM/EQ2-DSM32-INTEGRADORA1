@@ -1,6 +1,14 @@
 <?php
-session_start();
-include_once 'includes/header.php';
+if (session_start()) {
+} else {
+    session_start();
+}
+$pagina_admin = 0;
+$pagina = 1;
+$video = 1;
+require_once 'includes/header.php';
+
+
 ?>
 
 
@@ -34,8 +42,31 @@ include_once 'includes/header.php';
     </div>
 </div>
 <div class="innovative">
-    <h3>INNOVATIVE TRANSPORT S.A DE C.V.</h3>
-
+    <div class="container">
+        <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+            <h3>INNOVATIVE TRANSPORT S.A DE C.V.</h3>
+            <div class="container" style="text-align: center;">
+                <div class="row">
+                    <div class="col order-last">
+                       <h1 style="font-weight: 900; font-size: 1.5rem;">Visión</h1>
+                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, tempora natus quod quis soluta sint recusandae possimus unde dolor ullam eligendi excepturi odio, officiis voluptate molestias sunt animi nobis quidem!</p> 
+                    </div>
+                    <div class="col" >
+                        <h1 style="font-weight: 900; font-size: 1.5rem;">Misión</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, tempora natus quod quis soluta sint recusandae possimus unde dolor ullam eligendi excepturi odio, officiis voluptate molestias sunt animi nobis quidem!</p> 
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="text-align: center;">
+                <div class="row">
+                    <div class="col order-first">
+                       <h1 style="font-weight: 900; font-size: 1.5rem;">Objetivo</h1>
+                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, tempora natus quod quis soluta sint recusandae possimus unde dolor ullam eligendi excepturi odio, officiis voluptate molestias sunt animi nobis quidem!</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Fin del Contenido de usuario -->
 
