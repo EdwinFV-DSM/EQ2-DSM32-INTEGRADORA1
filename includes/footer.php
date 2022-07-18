@@ -4,7 +4,7 @@
 ">
     <section class="container mini-banner">
         <div class="columnas">
-            <a class="link-imagen" href=""><img src="assets/img/Innovative Transport S.A de C.V (1).png" width="10%"
+            <a class="link-imagen" href=""><img src="<?= base_url?>assets/img/Innovative Transport S.A de C.V (1).png" width="10%"
                     height="auto" alt=""></a>
             <div class="container">
                 <div class="row">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="derechos">
-                <p>Derechos Reservados &copy;<a href="">Innovative Transport S.A de C.V</a>
+                <p>Derechos Reservados &copy;<a href="<?= base_url?>">Innovative Transport S.A de C.V</a>
                     <?php 
                         $Year = date("Y");
                     ?>
@@ -64,22 +64,27 @@
 </footer>
 </body>
 <!-- Core JavaScript Files -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.sticky.js"></script>
-<script src="assets/js/slippry.min.js"></script>
-<script src="assets/js/jquery.flexslider-min.js"></script>
-<script src="assets/js/morphext.min.js"></script>
-<script src="assets/js/jquery.mb.YTPlayer.js"></script>
-<script src="assets/js/jquery.easing.min.js"></script>
-<script src="assets/js/jquery.scrollTo.js"></script>
-<script src="assets/js/jquery.appear.js"></script>
-<script src="assets/js/stellar.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/nivo-lightbox.min.js"></script>
-<script src="assets/js/jquery.nicescroll.min.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="<?= base_url?>assets/js/jquery.min.js"></script>
+<script src="<?= base_url?>assets/js/bootstrap.min.js"></script>
+<script src="<?= base_url?>assets/js/jquery.sticky.js"></script>
+<script src="<?= base_url?>assets/js/slippry.min.js"></script>
+<script src="<?= base_url?>assets/js/jquery.flexslider-min.js"></script>
+<script src="<?= base_url?>assets/js/morphext.min.js"></script>
+<script src="<?= base_url?>assets/js/jquery.mb.YTPlayer.js"></script>
+<script src="<?= base_url?>assets/js/jquery.easing.min.js"></script>
+<script src="<?= base_url?>assets/js/jquery.scrollTo.js"></script>
+<script src="<?= base_url?>assets/js/jquery.appear.js"></script>
+<script src="<?= base_url?>assets/js/stellar.js"></script>
+<script src="<?= base_url?>assets/js/wow.min.js"></script>
+<script src="<?= base_url?>assets/js/owl.carousel.min.js"></script>
+<script src="<?= base_url?>assets/js/nivo-lightbox.min.js"></script>
+<script src="<?= base_url?>assets/js/jquery.nicescroll.min.js"></script>
+<script src="<?= base_url?>assets/js/custom.js"></script>
+<script src="<?= base_url?>assets/js/app.js"></script>
+<script src="<?= base_url_admin?>/assets/js/crear_boleto.js"></script>
+<script src="<?= base_url_admin?>/assets/js/modificar_boleto.js"></script>
+<script src="<?= base_url_admin?>/assets/js/modificar_cliente.js"></script>
+<script src="<?= base_url_admin?>/assets/js/crear_cliente.js"></script>
 </body>
 
 </html>
