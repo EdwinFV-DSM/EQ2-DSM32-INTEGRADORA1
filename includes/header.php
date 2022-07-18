@@ -10,6 +10,9 @@ if ($pagina == 1) {
 
 }elseif ($pagina_modificacion == 1) {
     require_once '../../config/parameters.php';
+}elseif ($pagina_admin == 1) {
+    require_once '../../config/parameters.php';
+    require_once '../../config/ConexionDB.php';
 }else{
     require_once '../config/parameters.php';
     require_once '../config/ConexionDB.php';
@@ -108,7 +111,7 @@ error_reporting(0);
                                             <li><a class="dropdown-item" href="<?= base_url?>user/facturas.php"><i class="bi bi-receipt"></i>
                                                     Facturas</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="<?= base_url?>user/boletos.php"><i class="bi bi-ticket-detailed"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url?>user/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
                                                     Boletos</a></li>
                                             <li><a class="dropdown-item" href="<?= base_url?>ususario/horarios.php"><i class="bi bi-clock"></i>
                                                     Horarios</a></li>
