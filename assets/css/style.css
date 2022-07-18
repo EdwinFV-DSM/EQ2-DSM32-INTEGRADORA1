@@ -740,3 +740,58 @@ thead{
 tr{
     border-block-end: 0px solid transparent;
 }
+
+.pago-boleto{
+    padding: 20px ;
+}
+
+.contenido-pago{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.contenido-pago h1{
+    padding: 0px !important;
+    margin: 0px;
+}
+
+.ticket{
+    width: 60%;
+}
+
+.ticket p{
+    padding-block-start: 20px;
+}
+
+.botones-pago{
+    width: 37%;
+}
+
+.linea-pago{
+    height: 3px;
+    background-color: rgb(232 191 86);
+    border: none;
+}
+
+.info-personal-cliente{
+    display: block;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    font-size: 19px;
+}
+
+.info-personal-cliente h1{
+    margin: 0;
+    text-align: right;
+}
+
+.info-personal-cliente h1 span{
+    color: #e9a800;
+}
