@@ -36,7 +36,7 @@ error_reporting(0);
     <!-- css -->
     <link href="<?= base_url ?>assets/css/animate.css" rel="stylesheet" />
     <link href="<?= base_url ?>assets/css/style.css" rel="stylesheet" />
-    <?php if ($pagina_admin == 2) {?>
+    <?php if ($pagina_admin == 2 || $pagina_modificacion == 1 ) {?>
         <link rel="stylesheet" href="<?= base_url_admin ?>/assets/css/style.css">
     <?php } ?>
 
@@ -124,7 +124,7 @@ error_reporting(0);
                                                     Boletos</a></li>
                                     <!-- Primera validacion es donde se valida que el usuario sea administrador para tener acceso a todos los servicios  -->
                                         <?php } elseif ($_SESSION['idTUsuario'] == 4) { ?>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/facturas"><i class="bi bi-receipt"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/Facturas.php?pagina=1"><i class="bi bi-receipt"></i>
                                                     Facturas</a>
                                             </li>
                                             <li><a class="dropdown-item" href="<?= base_url_admin?>/Clientes.php?pagina=1"><i class="bi bi-person-circle"></i>
