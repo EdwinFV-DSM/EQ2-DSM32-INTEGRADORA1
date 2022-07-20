@@ -109,7 +109,7 @@ $_POST['campo'] = '';
                             <th scope="row"><?php echo $row_cliente['nombre'] ?> <?php echo $row_cliente['apellidos'] ?></th>
                             <th scope="row"><?php echo $tickets['fechaV'] ?></th>
                             <td>
-                                <a class="btn btn-success" href="<?= base_url ?>admin/operaciones/modificar_boleto.php?operacion=<?php echo $tickets['N_Operacion']; ?>"><i class="bi bi-pencil-square"></i></a>
+                                <a class="btn btn-success" href="<?= base_url ?>user/editar.php?operacion=<?php echo $tickets['N_Operacion']; ?>"><i class="bi bi-pencil-square"></i></a>
                                 <!-- <a class="btn btn-danger" href="<?= base_url ?>admin/boletos.php?pagina=<?php echo $_GET['pagina'] ?>&N_Operacion=<?php echo $tickets['N_Operacion']; ?>"><i class="bi bi-trash"></i></a> -->                                
                                 <a class="btn btn-primary" href="<?= base_url ?>admin/operaciones/consulta.php?operacion=<?php echo $tickets['N_Operacion']; ?>"><i class="bi bi-search"></i></a>
                                 <a href="<?= base_url ?>user/procesos/pagar_boleto.php?operacion=<?php echo $tickets['idTicket'] ?>" class="btn btn-warning"><i class="bi bi-currency-dollar"></i></a>
