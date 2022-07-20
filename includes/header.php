@@ -50,9 +50,10 @@ error_reporting(0);
     <script src="https://www.paypal.com/sdk/js?client-id=AcEaKT68XPWppkhwxKv_LCXyB-TBKap3rnXGpd6DvA1g7qx13WBzxk6cinqj3jcFPNNdsrx4GU4v8OVH&currency=MXN"></script>
 
     <!-- Favicon de la pagina -->
-    <link rel="shortcut icon" href="<?= base_url ?>assets/img/Innovative Transport S.A de C.V (1).png" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="<?= base_url ?>assets/img/Innovative Transport S.A de C.V (1).png" type="image/x-icon"> -->
+    <link rel="shortcut icon" href="https://i.postimg.cc/g0H4khWq/Innovative-Transport-S-A-de-C-V-1.png" type="image/x-icon">
     
-    <title>Innovative Transport</title>
+    <title>Innovative Transport | <?php echo $nombre_pagina ?></title>
 </head>
 <body onload="startTime()">
     <?php if ($video == 1) { ?>
