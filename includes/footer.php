@@ -4,7 +4,7 @@
 ">
     <section class="container mini-banner">
         <div class="columnas">
-            <a class="link-imagen" href=""><img src="<?= base_url?>assets/img/Innovative Transport S.A de C.V (1).png" width="10%"
+            <a class="link-imagen" href="<?= base_url ?>"><img src="<?= base_url?>assets/img/Innovative Transport S.A de C.V (1).png" width="10%"
                     height="auto" alt=""></a>
             <div class="container">
                 <div class="row">
@@ -52,11 +52,11 @@
                 </div> -->
             <div class="exit">
                 <a href="http://"></a>
-                <a href="http://">Politicas de Privacidad</a>
-                <a href="http://">Accesibilidad a la web</a>
-                <a href="http://">Condiciones de uso</a>
+                <a href="<?= base_url ?>policies/Politicas_de_Privacidad.php">Politicas de Privacidad</a>
+                <!-- <a href="http://">Accesibilidad a la web</a> -->
+                <a href="<?= base_url ?>policies/Condiciones_uso.php">Condiciones de uso</a>
                 <a href="http://">Politicas del sitio web</a>
-                <a href="http://">Preferencias sobre cookies</a>
+                <a href="<?= base_url ?>policies/Politica_Reembolso.php">Politica de Reembolso y Garantia</a>
             </div>
         </div>
         </div>
