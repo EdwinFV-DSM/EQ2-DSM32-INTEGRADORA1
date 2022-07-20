@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <header style="background-color: #eff2f7">
+      <center>
+        <img
+          src="https://i.postimg.cc/NGCNDFGf/Tren-Interurbano2.png"
+          width="50%"
+          style="padding-block-start: 20px; padding-block-end: 20px"
+          alt=""
+        />
+      </center>
+    </header>
+    <section class="contenido" style="padding-block-start: 20px">
+      <div class="container">
+        <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+          <h1 style="text-align: center; color: #e9bf57">
+            Seguimiento de tu Factura del boleto %N_Operacion%
+          </h1>
+          <p>Nombre del que solicita: %cliente%</p>
+          <p>Fecha de solicitud: %solicitud%</p>
+          <p>Tipo de Usuario: %TUsuario%</p>
+          <p>No. Operacion: %N_Operacion%</p>
+          <p>Email: %email%</p>
+          <p>Telefono: %telefono%</p>
+          <p>Status de la factura: %status%</p>
+          <span style="font-weight: bold; color: red;">Nota: Se te avisara por correo cada que pase por un filtro la factura al igual que puedes ver el status en tu panel, tambien cuando
+            se apruebe la factura se te notificara, despues de que te notiquemos que ya fue aprobada te mandaremos un email con la factura
+            en pdf, tambien la podras descargar desde tu panel.
+          </span>
+          <p></p>
+          <p>Sin nada que mas que agregar que tenga un bonito dia. <br>
+            ATTE: Innovative Transport S.A de C.V</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer
+      style="background-color: #eff2f7; padding: 20px; text-align: center"
+    >
+      <span style="font-weight: bold; font-size: 20px"
+        >Innovative Transport</span
+      >
+      <p>Carlos Hank Gonzales, 52156, Metepec</p>
+      <p>Este e-mail se envio desde nuestras oficinas</p>
+      <p>
+        Recibiste este correo porque tu correo esta en nuestra base de datos
+      </p>
+      <p>Email de contacto: <a href="mailto:Innovative.transport@gmail.com">Innovative.transport@gmail.com</a></p>
+      <p>Telefono: <a href="tel:+52 7221090131">+52 7221090131</a></p>
+    </footer>
+
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+            transition: all 0.5s ease 0s;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #aa7a00;
+            transition: all 0.5s ease 0s;
+        }
+    </style>
+  </body>
+</html>
