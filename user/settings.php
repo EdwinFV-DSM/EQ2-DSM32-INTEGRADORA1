@@ -16,6 +16,7 @@ $pagina_modificacion = 0;
 $pagina_admin = 0;
 $video = 0;
 $pagina = 0;
+$nombre_pagina = "Settings";
 require_once '../includes/header.php';
 if ($_SESSION['idEscuela']) {
     $queryescuelas = 'SELECT nombre,img FROM escuelas WHERE idEscuela = ' . $_SESSION['idEscuela'];
