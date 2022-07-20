@@ -81,6 +81,7 @@
 <script src="<?= base_url?>assets/js/jquery.nicescroll.min.js"></script>
 <script src="<?= base_url?>assets/js/custom.js"></script>
 <script src="<?= base_url?>assets/js/app.js"></script>
+<script src="<?= base_url?>assets/js/modificar_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/crear_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_cliente.js"></script>
