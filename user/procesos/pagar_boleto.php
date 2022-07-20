@@ -12,6 +12,7 @@ $pagina = 0;
 $pagina_admin = 1;
 $pagina_modificacion = 0;
 $video = 0;
+$nombre_pagina = "Proceso de pago";
 require_once '../../includes/header.php';
 
 $ticket = "SELECT * FROM tickets WHERE idTicket = " . $_GET['operacion'];
@@ -108,9 +109,22 @@ if ($row_Usuario['idTUsuario'] == 2) {
                         <?php } ?>
                     </div>
                 </div>
-                <div class="botones-pago shadow-lg p-3 mb-5 bg-body rounded">
-                    <div id="paypal-button-container"></div>
-                </div>
+                <?php
+
+                $queryPagoBoleto = "SELECT * FROM pago WHERE idTicket =" . $_GET['operacion'];
+                $Pago = mysqli_query($conexion, $queryPagoBoleto);
+                $row_Pago = mysqli_fetch_assoc($Pago);
+
+                if ($row_Pago['idTicket'] == $_GET['operacion'] && $row_Pago['status'] == "COMPLETED") { ?>
+                    <div class="botones-pago shadow-lg p-3 mb-5 bg-body rounded">
+                        <p style="text-align: center;">El boleto ya ha sido pagado</p>
+                        <a href="<?=base_url?>temp/<?php echo $row_Pago['codigo_qr'] ?>" class="btn btn-success" style="display: flex; text-align: center; align-items: center; justify-content: center; flex-wrap: nowrap; flex-direction: row;" target="_blank" download>Obtener codigo QR</a>
+                    </div>
+                <?php } else { ?>
+                    <div class="botones-pago shadow-lg p-3 mb-5 bg-body rounded">
+                        <div id="paypal-button-container"></div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -125,21 +139,34 @@ if ($row_Usuario['idTUsuario'] == 2) {
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
+                    description: "No. Operacion <?php echo $row_ticket['N_Operacion'] ?>, Boleto tipo <?php echo $row_Usuario['nombreUsuario']; ?>",
+                    reference_id: <?php echo $_GET['operacion'] ?>,
                     amount: {
                         value: <?php echo $total_pagar; ?>
-                    }
+                    },
                 }]
             });
         },
 
-        onApprove: function(data, actions){
-            actions.order.capture().then(function (detalles){
-                // console.log(detalles);
+        onApprove: function(data, actions) {
+            actions.order.capture().then(function(detalles) {
+                console.log(detalles)
+                let url = 'captura_pago.php';
+
                 Swal.fire(
-                'Success',
-                'Tu pago a sido realizado correctamente',
-                'success'
-            )
+                    'Success',
+                    'Tu pago a sido realizado correctamente',
+                    'success'
+                )
+                return fetch(url, {
+                    method: 'post',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        detalles: detalles
+                    })
+                })
             });
         },
 

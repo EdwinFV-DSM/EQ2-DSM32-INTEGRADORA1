@@ -1,15 +1,15 @@
 // console.log('Funcionando');
 //enviar formulario a la base de datos
-var formulario2 = document.getElementById('modificar-boleto');
+var formulario5 = document.getElementById('modificar-boleto');
 
-formulario2.addEventListener('submit',  function(e) {
+formulario5.addEventListener('submit',  function(e) {
     e.preventDefault();
     // console.log('Me diste un click UwU');
 
-    var datos = new FormData(formulario2);
+    var datos = new FormData(formulario5);
 
 
-    // console.log(datos);
+    console.log(datos);
     console.log(datos.get('cliente'))
     console.log(datos.get('fechaC'))
     console.log(datos.get('fechaV'))

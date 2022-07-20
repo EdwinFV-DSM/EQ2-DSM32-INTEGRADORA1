@@ -6,6 +6,7 @@ if (session_start()) {
 $pagina_admin = 0;
 $pagina = 1;
 $video = 1;
+$nombre_pagina = "Inicio";
 require_once 'includes/header.php';
 
 

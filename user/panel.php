@@ -4,6 +4,7 @@ $pagina_admin = 0;
 $pagina_modificacion = 0;
 $pagina = 0;
 $video = 0;
+$nombre_pagina = "Home";
 require_once '../includes/header.php';
 require_once '../config/ConexionDB.php';
 if (isset($_SESSION['login']) == 1) {

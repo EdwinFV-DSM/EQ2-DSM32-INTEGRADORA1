@@ -795,3 +795,15 @@ tr{
 .info-personal-cliente h1 span{
     color: #e9a800;
 }
+
+.politicas{
+    padding-block-start: 20px;
+}
+
+.politicas h1{
+    color: #e9a800;
+}
+
+.politicas span{
+    font-weight: bold;
+}
