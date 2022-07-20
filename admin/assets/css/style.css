@@ -54,3 +54,27 @@
     text-decoration: none !important;
     white-space: nowrap !important;
 }
+
+.consulta-factura{
+    padding-block-start: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.consulta-factura h1{
+    text-align: center;
+    color: #E9BF57;
+}
+
+.contenido-ticket{
+    width: 60%;
+    text-align: center;
+}
+
+.datos-cliente{
+    width: 37%;
+}
