@@ -51,7 +51,6 @@ if ($_REQUEST['operacion']) {
 <section class="modificar-boleto">
     <div class="container">
         <div class="row shadow-lg p-3 mb-5 bg-body rounded">
-            <img src="<?= base_url ?>assets/img/Innovative Transport S.A de C.V (1).png" style="width: 146px;padding-left: 12px;position: absolute;" alt="">
             <h1>Consulta del boleto <?php echo $row_tickets['N_Operacion'] ?></h1>
             <div class="row" style="padding-block-start: 20px;">
                 <div class="container">
