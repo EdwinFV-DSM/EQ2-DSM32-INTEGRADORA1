@@ -807,3 +807,7 @@ tr{
 .politicas span{
     font-weight: bold;
 }
+
+.signup{
+    display: flex;
+}
