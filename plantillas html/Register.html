@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <title>Register</title>
+    </head>
+    <body>
+        <style> body{
+            background-image: url(/assets/img/tren.jfif);
+            background-size:cover;
+            Background-repeat:no-repeat;
+            }
+        </style>
+        <div class="background">
+            <header class="formulario-registro">
+                <div class="container shadow contenedor">
+                    <div class="row">
+                        <h1>Sign Up</h1>
+                        <form class="row g-3" action=""
+                            method="post">
+                            <div class="col-md-4">
+                                <label for="inputEmail4" class="form-label">Nombre</label>
+                                <input type="text" class="form-control"
+                                    id="inputEmail4" name="nombre">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputPassword4" class="form-label">Apellido</label>
+                                <input type="password" class="form-control"
+                                    id="inputPassword4" name="apellido">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputAddress" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control"
+                                    id="inputAddress" name="fechaNa">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress2" class="form-label">Email</label>
+                                <input type="email" class="form-control"
+                                    id="inputAddress2" placeholder="innovative.transport@email.com" name="email">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">Password</label>
+                                <input type="text" class="form-control"
+                                    id="inputCity" name="password">
+                            </div>
+                            <div class="col-md-6" style="display: flex; flex-wrap: wrap; flex-direction: row; align-items: stretch; justify-content: center; align-content: center;">
+                                <label for="exampleInputPassword1" class="form-label">Sexo: </label>
+                                <div class="checkbox">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="sexo" value="M">
+                                        <label class="form-check-label" for="inlineCheckbox1">Masculino</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="sexo" value="F">
+                                        <label class="form-check-label" for="inlineCheckbox2">Femenino</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </div>
+                            <div class="options">
+                                <p>Ya tengo cuenta <a href="">ingresar</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </body>
+</html>
