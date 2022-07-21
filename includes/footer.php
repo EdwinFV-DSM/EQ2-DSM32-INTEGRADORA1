@@ -82,11 +82,13 @@
 <script src="<?= base_url?>assets/js/custom.js"></script>
 <script src="<?= base_url?>assets/js/app.js"></script>
 <script src="<?= base_url?>assets/js/modificar_boleto.js"></script>
+<script src="<?= base_url?>assets/js/signup.js"></script>
 <script src="<?= base_url_admin?>/assets/js/crear_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_cliente.js"></script>
 <script src="<?= base_url_admin?>/assets/js/crear_cliente.js"></script>
 <script src="<?= base_url_admin?>/assets/js/facturacion.js"></script>
+
 </body>
 
 </html>
