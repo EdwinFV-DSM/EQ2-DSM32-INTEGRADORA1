@@ -1,12 +1,12 @@
 // console.log('Funcionando');
 //enviar formulario a la base de datos
-var formulario2 = document.getElementById('modificar-cliente');
+var modificar_cliente = document.getElementById('modificar-cliente');
 
-formulario2.addEventListener('submit',  function(e) {
+modificar_cliente.addEventListener('submit',  function(e) {
     e.preventDefault();
     // console.log('Me diste un click UwU');
 
-    var datos = new FormData(formulario2);
+    var datos = new FormData(modificar_cliente);
 
 
     // console.log(datos);
@@ -23,8 +23,7 @@ formulario2.addEventListener('submit',  function(e) {
     console.log(datos.get('municipio'))
     console.log(datos.get('escuela'))
     console.log(datos.get('password'))
-    console.log(datos.get('sexoM'))
-    console.log(datos.get('sexoF'))
+    console.log(datos.get('sexo'))
     
 
 
