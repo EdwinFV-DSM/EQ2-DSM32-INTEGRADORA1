@@ -59,11 +59,7 @@ if ($_POST) {
 
         $fecha_hora_modificacion = date('Y-m-d H:i:s');
 
-        if ($_POST['sexoM'] == '') {
-            
-        }elseif ($_POST['sexoF'] == '') {
-            
-        }elseif ($_POST['sexoF'] == 'F') {
+        if ($_POST['sexo'] == 'F') {
            $sexoF = $_POST['sexoF'];
            $actualizarCliente = "UPDATE `cliente` SET `img`=NULL,`nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$TUsuario',`email`='$email',`telefono`='$phone',
            `calle`='$direccion',`numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$cp',`idServicio`='$idServicio',`idEscuela`='$escuela',`Status`= NULL,
@@ -76,7 +72,7 @@ if ($_POST) {
                echo json_encode('error-insertar');
            }
 
-        }elseif ($_POST['sexoM'] == 'M') {
+        }elseif ($_POST['sexo'] == 'M') {
             $sexoM = $_POST['sexoM'];
             $actualizarCliente = "UPDATE `cliente` SET `img`=NULL,`nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$TUsuario',`email`='$email',`telefono`='$phone',
            `calle`='$direccion',`numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$cp',`idServicio`='$idServicio',`idEscuela`='$escuela',`Status`= NULL,
