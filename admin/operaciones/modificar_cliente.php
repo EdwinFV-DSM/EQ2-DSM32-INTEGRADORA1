@@ -140,11 +140,11 @@ $Escuelas = mysqli_query($conexion, $queryEscuela);
                     <label for="exampleInputPassword1" class="form-label">Sexo</label>
                     <div class="checkbox">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="sexoM" value="M">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="sexo" value="M">
                             <label class="form-check-label" for="inlineCheckbox1">Masculino</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="sexoF" value="F">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="sexo" value="F">
                             <label class="form-check-label" for="inlineCheckbox2">Femenino</label>
                         </div>
                     </div>
