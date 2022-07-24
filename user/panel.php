@@ -18,6 +18,37 @@ if ($_SESSION['status'] == 0) {
 } else {
     $activo = 'Inactivo';
 }
+
+$tickets = 'SELECT * FROM tickets WHERE idCliente =' . $_SESSION['idCliente'];
+$sentencia = $PDO->prepare($tickets);
+$sentencia->execute();
+
+$resultado = $sentencia->fetchAll();
+//contar articulos de nuestra base de datos
+
+$total_tickets_db = $sentencia->rowCount();
+
+/**Conteo de facturas solicitadas */
+
+$tickets = 'SELECT * FROM facturas WHERE idCliente =' . $_SESSION['idCliente']." AND status = 1";
+$sentencia = $PDO->prepare($tickets);
+$sentencia->execute();
+
+$resultado = $sentencia->fetchAll();
+//contar articulos de nuestra base de datos
+
+$total_facturas_db = $sentencia->rowCount();
+
+/**Conteo de facturas aprobadas */
+
+$tickets = 'SELECT * FROM facturas WHERE idCliente =' . $_SESSION['idCliente']." AND status = 3";
+$sentencia = $PDO->prepare($tickets);
+$sentencia->execute();
+
+$resultado = $sentencia->fetchAll();
+//contar articulos de nuestra base de datos
+
+$total_facturas_db_aprobadas = $sentencia->rowCount();
 ?>
 <div class="header pie">
     <div class="container">
@@ -83,10 +114,163 @@ if ($_SESSION['status'] == 0) {
         </div>
     </div>
 </div>
-<h1 style="text-align: center;"><?php if ($_SESSION['sexo'] == 'F') {
+<h1 style="text-align: center; color: black;"><?php if ($_SESSION['sexo'] == 'F') {
                                     echo 'Bienvenida ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
                                 } else {
                                     echo 'Bienvenido ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
                                 } ?></h1>
+
+
+<section class="cards-info">
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Tickets Creados</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_tickets_db ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-ticket-detailed fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Facturas Solicitadas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_facturas_db ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-receipt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Facturas Aprobadas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_facturas_db_aprobadas ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-receipt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Earnings (Monthly) Card Example -->
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Pending Requests</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php 
+
+$compras = "SELECT * FROM tickets WHERE idCliente =".$_SESSION['idCliente']." ORDER BY fechaC DESC LIMIT 0,5";
+$comprasOld = mysqli_query($conexion, $compras);
+
+
+?>
+
+
+<div class="container">
+    <div class="row">
+        <section class="info">
+            <div class="compras shadow-lg p-3 mb-5 bg-body rounded scrollspy-example">
+                <h1>Recientes Compras</h1>
+                <table class="table" style="height: 150px" >
+                    <thead>
+                        <tr>
+                            <th scope="col">No.Operacion</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Fecha de Creacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($compras_rows = mysqli_fetch_assoc($comprasOld)) {?>
+                        <tr>
+                            <td><?php echo $compras_rows['N_Operacion']; ?></td>
+                            <td>$<?php echo $compras_rows['costo']; ?> MXN</td>
+                            <td><?php echo $compras_rows['fechaC']; ?></td>
+                        </tr>
+                        <?php } mysqli_free_result($comprasOld);?>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <?php 
+            $messages = "SELECT * FROM messages WHERE idCliente =".$_SESSION['idCliente']." ORDER BY fechaCreacion DESC LIMIT 0,5";
+            $resultado_msg = mysqli_query($conexion, $messages);
+            ?>
+
+            <div class="alertas shadow-lg p-3 mb-5 bg-body rounded">
+            <h1>Messages</h1>
+            <div class="contenido-messages" style="text-align: left;">
+            <?php while($row_messages = mysqli_fetch_assoc($resultado_msg)){?>
+                <p>System: <?php echo $row_messages['Descripcion'] ?></p>
+            <?php } mysqli_free_result($resultado_msg);?>
+            </div>
+            </div>
+        </section>
+    </div>
+</div>
 
 <?php include_once '../includes/footer.php'; ?>
