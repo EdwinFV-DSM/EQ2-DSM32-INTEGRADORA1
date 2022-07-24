@@ -53,92 +53,43 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-            ">
-                <style>
-                    .archivo {
-                        width: 80px;
-                        height: 80px;
-                        overflow: hidden;
-                    }
-
-                    #file {
-                        background-image: url("<?php echo $_SESSION['img']; ?>");
-                        background-position-x: 50%;
-                        background-position-y: 4px;
-                        height: 144px;
-                        background-size: 97px 87px;
-                        padding-left: 33%;
-                        display: flex;
-                        background-repeat: no-repeat;
-                        align-items: flex-start;
-                        align-content: flex-end;
-                        flex-wrap: nowrap;
-                        flex-direction: row;
-                        justify-content: center;
-                        border-radius: 122px;
-                    }
-
-                    #file {
-                        background-image: url(https://tinyurl.com/23gwpgek);
-                        background-position-x: 50%;
-                        background-position-y: 4px;
-                        height: 144px;
-                        background-size: 97px 87px;
-                        padding-left: 33%;
-                        display: flex;
-                        background-repeat: no-repeat;
-                        align-items: flex-start;
-                        align-content: flex-end;
-                        flex-wrap: nowrap;
-                        flex-direction: row;
-                        justify-content: center;
-                        border-radius: 122px;
-                    }
-
-                    button,
-                    input,
-                    optgroup,
-                    select,
-                    textarea {
-                        margin: 0;
-                        font-family: inherit;
-                        font-size: inherit;
-                        line-height: inherit;
-                        padding-block-start: 94px;
-                    }
-                </style>
-                <input type="file" name="imagen" id="file">
+            " enctype="multipart/form-data" action="settings.php" method="POST">
+                <input type="file" name="imagen">
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputEmail4" value="<?php echo $row_cliente['nombre']; ?>">
+                    <input type="text" class="form-control" id="inputEmail4" value="<?php echo $row_cliente['nombre']; ?>" name="nombre">
                 </div>
                 <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" id="inputPassword4" value="<?php echo $row_cliente['apellidos']; ?>">
+                    <input type="text" class="form-control" id="inputPassword4" value="<?php echo $row_cliente['apellidos']; ?>" name="apellidos">
                 </div>
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="inputEmail4" value="<?php echo $row_cliente['email']; ?>">
+                    <input type="text" class="form-control" id="inputEmail4" value="<?php echo $row_cliente['email']; ?>" name="email">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label for="inputPassword4" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" id="inputPassword4" value="<?php echo $row_cliente['telefono']; ?>">
+                    <input type="text" class="form-control" id="inputPassword4" value="<?php echo $row_cliente['telefono']; ?>" name="telefono">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputPassword4" class="form-label">Codigo Postal</label>
+                    <input type="text" class="form-control" id="inputPassword4" value="<?php echo $row_cliente['codigoPostal']; ?>" name="cp">
                 </div>
                 <div class="col-md-6">
                     <label for="inputCity" class="form-label">Direccion</label>
-                    <input type="text" class="form-control" id="inputCity" value="<?php echo $row_cliente['calle']; ?>">
+                    <input type="text" class="form-control" id="inputCity" value="<?php echo $row_cliente['calle']; ?>" name="calle">
                 </div>
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Num. Interior</label>
-                    <input type="text" class="form-control" id="inputZip" value="<?php echo $row_cliente['numInt']; ?>">
+                    <input type="text" class="form-control" id="inputZip" value="<?php echo $row_cliente['numInt']; ?>" name="numInt">
                 </div>
                 <div class="col-md-2">
                     <label for="inputZip" class="form-label">Num. Exterior</label>
-                    <input type="text" class="form-control" id="inputZip" value="<?php echo $row_cliente['numExt']; ?>">
+                    <input type="text" class="form-control" id="inputZip" value="<?php echo $row_cliente['numExt']; ?>" name="numExt">
                 </div>
                 <div class="col-md-6">
                     <label for="inputCity" class="form-label">Municipio</label>
-                    <input type="text" class="form-control" id="inputCity" value="<?php echo $row_cliente['municipio']; ?>">
+                    <input type="text" class="form-control" id="inputCity" value="<?php echo $row_cliente['municipio']; ?>" name="municipio">
                 </div>
                 <div class="col-md-4">
                     <?php if ($_SESSION['idEscuela'] == '') { ?>
@@ -155,23 +106,105 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
                 </div>
                 <div class="col-md-6">
                     <label for="inputCity" class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="inputCity" value="<?php echo $row_cliente['fechaNac']; ?>">
+                    <input type="date" class="form-control" id="inputCity" value="<?php echo $row_cliente['fechaNac']; ?>" name="fechaNac">
                 </div>
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputCity" value="<?php echo $row_cliente['password']; ?>">
+                    <input type="password" class="form-control" id="inputCity" value="<?php echo $row_cliente['password']; ?>" name="password">
                 </div>
                 <div class="col-2">
                     <label for="inputZip" class="form-label">Descuento</label>
                     <input type="text" class="form-control" id="inputZip" value="<?php echo $activo ?>" disabled>
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                    <button type="submit" class="btn btn-primary" name="Guardar"><i class="fa fa-save"></i> Save</button>
                 </div>
             </form>
         </div>
     </div>
 </section>
 
+<?php 
+
+if(isset($_POST['Guardar'])){
+    $imagen = $_FILES['imagen']['name'];
+    $idCliente = $_SESSION['idCliente'];
+
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
+    $calle = $_POST['calle'];
+    $numInt = $_POST['numInt'];
+    $numExt = $_POST['numExt'];
+    $municipio = $_POST['municipio'];
+    $fechaNac = $_POST['fechaNac'];
+    $password = $_POST['password'];
+    $codigoPostal = $_POST['cp'];
+
+
+    $idEscuela = $_SESSION['idEscuela'];
+    $idTUsuario = $_SESSION['idTUsuario'];
+    $status = $_SESSION['status'];
+    $sexo = $_SESSION['sexo'];
+    $dateCreacion = $_SESSION['dateCreacion'];
+
+    $dateModificacion = date('Y-m-d H:i:s');
+
+    $alert;
+    if(isset($imagen) && $imagen != ""){
+        $tipo = $_FILES['imagen']['type'];
+        $temp  = $_FILES['imagen']['tmp_name'];
+
+       if( !((strpos($tipo,'gif') || strpos($tipo,'jpeg') || strpos($tipo,'webp') || strpos($tipo,'jpg')))){
+        $alert = "'<script>Swal.fire(
+            'Error',
+            'Solo se permite archivos jpeg, gif, webp',
+            'error'
+          )</script>'";
+          header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
+       }else{
+         $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
+         `numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$codigoPostal',`idServicio`=1,`idEscuela`='$idEscuela',`Status`='$status',`Sexo`='$sexo',
+         `password`='$password',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =".$idCliente;
+         $resultado_update_cliente = mysqli_query($conexion,$query);
+         if($resultado_update_cliente){
+              move_uploaded_file($temp,'../uploads/'.$imagen);
+              $alert = "'<script>
+              Swal.fire({
+                icon: 'success',
+                title: 'Se ha modificado correctamente',
+                text: 'Los cambios se mostraran en el proximo inicio de sesion'
+                
+              })</script>'";
+             header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
+         }else{
+            $alert = "'<script>Swal.fire(
+                'Error',
+                'ocurrio un error en el servidor',
+                'error'
+              )</script>'";
+         }
+       }
+    }else{
+        $imagen = $row_cliente['img'];
+        $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
+        `numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$codigoPostal',`idServicio`=1,`idEscuela`='$idEscuela',`Status`='$status',`Sexo`='$sexo',
+        `password`='$password',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =".$idCliente;
+        $resultado_update_cliente = mysqli_query($conexion,$query);
+        if($resultado_update_cliente){
+             $alert = "'<script>
+             Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Se ha modificado correctamente'
+               
+             })</script>'";
+            }
+    }
+    echo $alert;
+}
+
+?>
 
 <?php require_once '../includes/footer.php'; ?>
