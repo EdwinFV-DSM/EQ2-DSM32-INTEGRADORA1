@@ -24,6 +24,7 @@ if (isset($_REQUEST['email'])) {
             $_SESSION['idEscuela'] = $row['idEscuela'];
             $_SESSION['status'] = $row['Status'];
             $_SESSION['sexo'] = $row['Sexo'];
+            $_SESSION['dateCreacion'] = $row['dateCreacion'];
          }else{
             echo json_encode('error');
         }
