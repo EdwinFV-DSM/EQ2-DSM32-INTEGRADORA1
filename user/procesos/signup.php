@@ -1,31 +1,57 @@
 <?php 
 include_once '../../config/ConexionDB.php';
 
-if (isset($_REQUEST['email'])) {
-    if (isset($_REQUEST['password'])) {
-        $email = $_REQUEST['email'];
-        $pass = $_REQUEST['password'];
-        $query0 = 'SELECT * FROM cliente WHERE email="' . $email . '" AND password="' . $pass . '"';
-        $result0 = mysqli_query($conexion, $query0);
-        $conteo0 = $result0->num_rows;
+if ($_POST ['nombre']=='' || $_POST['nombre'] ==' ') {
+    echo json_encode('error-nombre');
+}elseif($_POST ['apellido']=='' || $_POST['apellido']==' '){
+    echo json_encode('error-apellido');
+}elseif($_POST ['fechaNa']=='' || $_POST['fechaNa']==' '){
+    echo json_encode('error-fechaNa');
+}elseif($_POST ['email']=='' || $_POST['email']==' '){
+    echo json_encode('error-email');
+}elseif($_POST ['password']=='' || $_POST['password']==' '){
+    echo json_encode('error-password');
+}elseif($_POST ['sexo']=='' || $_POST['sexo']==' '){
+    echo json_encode('error-sexo');
+}else{
+    $nombre=$_POST['nombre'];
+    $apellido=$_POST['apellido'];
+    $fechaNa=$_POST['fechaNa'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $sexo=$_POST['sexo'];
+    $dateCreacion = date('Y-m-d H:i:s');
 
-        if($conteo0){
-            echo json_encode('success');
-            $querycliente = 'SELECT * FROM cliente WHERE email="' . $email . '"';
-            $cliente = mysqli_query($conexion, $querycliente);
-            $row = mysqli_fetch_assoc($cliente);
-            session_start();
-            $_SESSION['login'] = 1;
-            $_SESSION['idCliente'] = $row['idCliente'];
-            $_SESSION['nombre'] = $row['nombre'];
-            $_SESSION['apellidos'] = $row['apellidos'];
-            $_SESSION['img'] = $row['img'];
-            $_SESSION['idTUsuario'] = $row['idTUsuario'];
-            $_SESSION['idEscuela'] = $row['idEscuela'];
-            $_SESSION['status'] = $row['Status'];
-            $_SESSION['sexo'] = $row['Sexo'];
-         }else{
-            echo json_encode('error');
-        }
+    /**
+     * incriptacion de password
+     */
+    $password_encriptada = password_hash($password,PASSWORD_DEFAULT);
+
+    $querycliente = "SELECT * FROM cliente";
+    $cliente = mysqli_query($conexion,$querycliente);
+    $row_cliente = mysqli_fetch_assoc($cliente);
+
+    if($email == $row_cliente['email']){
+        echo json_encode('error-cuenta');
+    }else{
+
+        if ($sexo == 'F') {
+      $insertarcliene ="INSERT INTO `cliente`(`idCliente`, `nombre`, `apellidos`, `fechaNac`, `idTUsuario`, `email`, `telefono`, `calle`, `numExt`, `numInt`, `municipio`, `codigoPostal`, `idServicio`, `idEscuela`, `Status`, `Sexo`, `password`, `dateCreacion`, `dateModificacion`, `dateEliminacion`, `img`) VALUES (NULL,'$nombre','$apellido','$fechaNa',3,'$email',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,1,'$sexo','$password_encriptada','$dateCreacion',NULL,NULL,NULL)";
+      $creacion = mysqli_query($conexion,$insertarcliene);
+      if ($creacion) {
+        echo json_encode('success');
+    } else {
+        echo json_encode('error-insertar');
+    }
+    }elseif ($sexo == 'M') {
+        $insertarcliene ="INSERT INTO `cliente`(`idCliente`, `nombre`, `apellidos`, `fechaNac`, `idTUsuario`, `email`, `telefono`, `calle`, `numExt`, `numInt`, `municipio`, `codigoPostal`, `idServicio`, `idEscuela`, `Status`, `Sexo`, `password`, `dateCreacion`, `dateModificacion`, `dateEliminacion`, `img`) VALUES (NULL,'$nombre','$apellido','$fechaNa',3,'$email',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,1,'$sexo','$password_encriptada','$dateCreacion',NULL,NULL,NULL)";
+      $creacion = mysqli_query($conexion,$insertarcliene);
+      if ($creacion) {
+        echo json_encode('success');
+    } else {
+        echo json_encode('error-insertar');
+    }
     }
 }
+}
+
