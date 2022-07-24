@@ -36,44 +36,64 @@ $queryhorarios = 'SELECT * FROM horarios';
 
 ?>
 
+<script language="javascript">
+    $(document).ready(function(){
+        $("#ruta").change(function(){
+            // $("#ruta").find()
+            $("#ruta option:selected").each(function(){
+                id_ruta = $(this).val();
+                $.post("procesos/getPrecio.php", { id_ruta : id_ruta }, 
+                    function(data) {
+                   $("#costo").html(data);
+                });
+            });
+        })
+    });
+</script>
 
 <section class="modificar-boleto">
     <div class="container">
         <div class="row shadow-lg p-3 mb-5 bg-body rounded">
-        <img src="<?= base_url ?>assets/img/Innovative Transport S.A de C.V (1).png" style="width: 146px;padding-left: 12px;position: absolute;" alt="">
             <h1>Modificacion de boleto</h1>
             <form class="row g-3 needs-validation" id="modificar-boleto-cliente" novalidate>
                 <div class="col-md-4">
                     <label for="exampleInputEmail1" class="form-label">Cliente</label>
-                    <select name="cliente" id="" class="form-select" aria-label="Default select example">
-                        <option value="<?php echo $row_cliente['idCliente']?>" selected><?php echo $row_cliente['nombre']?> <?php echo $row_cliente['apellidos']?></option>
+                    <select name="cliente" id="" class="form-select" aria-label="Default select example" readonly>
+                        <option value="<?php echo $row_cliente['idCliente']?>" selected ><?php echo $row_cliente['nombre']?> <?php echo $row_cliente['apellidos']?></option>
                         <?php while ($row_cliente = mysqli_fetch_assoc($cliente)) { ?>
                             <option value="<?php echo $row_cliente['idCliente'] ?>"><?php echo $row_cliente['nombre'] ?> <?php echo $row_cliente['apellidos'] ?></option>
                         <?php }
                         mysqli_free_result($cliente); ?>
                     </select>
                 </div>
+                <?php 
+
+                            $dateCreacion = date("Y-m-d");
+
+                ?>
                 <div class="col-md-4">
                     <label for="exampleInputPassword1" class="form-label">Fecha de Creacion</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" name="fechaC" value="<?php echo $row_tickets['fechaC'] ?>">
+                    <input type="date" class="form-control" id="exampleInputPassword1" name="fechaC" value="<?php echo $dateCreacion ?>" readonly>
                 </div>
                 <div class="col-md-4">
                     <label for="exampleInputPassword1" class="form-label">Fecha de Vencimiento</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" name="fechaV" value="<?php echo $row_tickets['fechaV'] ?>">
-                </div>
+                    <input type="date" class="form-control" id="exampleInputPassword1" name="fechaV" value="<?php echo $dateCreacion ?>" readonly>
+                </div>               
                 <div class="col-md-6">
-                    <label for="exampleInputPassword1" class="form-label">Costo</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="costo" value="<?php echo $row_tickets['costo'] ?>">
-                </div>
-                <div class="col-md-3">
                     <label for="validationCustom04" class="form-label">Ruta</label>
-                    <select name="ruta" id="" class="form-select" aria-label="Default select example">
+                    <select name="ruta" id="ruta" class="form-select" aria-label="Default select example">
                         <option value="" selected>Ruta</option>
                         <?php while ($row_cliente = mysqli_fetch_assoc($rutas)) { ?>
                             <option value="<?php echo $row_cliente['idRuta'] ?>"><?php echo $row_cliente['nombre'] ?></option>
                         <?php }
                         mysqli_free_result($rutas); ?>
                     </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputPassword1" class="form-label">Costo</label>
+                    <div id="costo">
+
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <label for="validationCustom04" class="form-label">Horario</label>
