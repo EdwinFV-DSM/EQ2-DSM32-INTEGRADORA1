@@ -807,3 +807,39 @@ tr{
 .politicas span{
     font-weight: bold;
 }
+
+.cards-info{
+    width: 97%;
+    padding-left: 42px;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    font-size: 19px;
+}
+
+.info .compras{
+    width: 60%;
+    text-align: center;
+}
+
+.alertas{
+    width: 37%;
+}
+
+.info .alertas{
+    text-align: center;
+}
+
+.info .alertas h1{
+    color: #e9a800;
+}
+
+.info .compras h1{
+    color: #e9a800;
+}
