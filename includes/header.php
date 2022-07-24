@@ -2,18 +2,17 @@
 if ($pagina == 1) {
     require_once 'config/parameters.php';
     require_once 'config/ConexionDB.php';
-}elseif ($pagina_admin == 2) {
+} elseif ($pagina_admin == 2) {
     require_once '../config/parameters.php';
     require_once '../config/ConexionDB.php';
     require_once '../admin/operaciones/crear_boleto.php';
     require_once '../admin/operaciones/crear_cliente.php';
-
-}elseif ($pagina_modificacion == 1) {
+} elseif ($pagina_modificacion == 1) {
     require_once '../../config/parameters.php';
-}elseif ($pagina_admin == 1) {
+} elseif ($pagina_admin == 1) {
     require_once '../../config/parameters.php';
     require_once '../../config/ConexionDB.php';
-}else{
+} else {
     require_once '../config/parameters.php';
     require_once '../config/ConexionDB.php';
 }
@@ -21,27 +20,32 @@ error_reporting(0);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Chris Mills">
+    <meta name="description" content="El área de aprendizaje de MDN pretende
+proporcionar a los recién llegados a la web todo lo que deben
+saber para empezar a desarrollar páginas web y aplicaciones web.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
-    </script>   
+    </script>
     <!-- Bibilioteca de Iconos Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
     <!-- Estilos para video -->
     <!-- css -->
     <link href="<?= base_url ?>assets/css/animate.css" rel="stylesheet" />
     <link href="<?= base_url ?>assets/css/style.css" rel="stylesheet" />
-    <?php if ($pagina_admin == 2 || $pagina_modificacion == 1 ) {?>
+    <?php if ($pagina_admin == 2 || $pagina_modificacion == 1) { ?>
         <link rel="stylesheet" href="<?= base_url_admin ?>/assets/css/style.css">
-    <?php } ?>
 
+    <?php } ?>
+    <link rel="stylesheet" href="<?= base_url_admin ?>/assets/css/sb-admin-2.css">
     <!-- Estilos de iconos -->
-    <link href="<?=base_url?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!--Libreria de SweetAlert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -52,9 +56,12 @@ error_reporting(0);
     <!-- Favicon de la pagina -->
     <!-- <link rel="shortcut icon" href="<?= base_url ?>assets/img/Innovative Transport S.A de C.V (1).png" type="image/x-icon"> -->
     <link rel="shortcut icon" href="https://i.postimg.cc/g0H4khWq/Innovative-Transport-S-A-de-C-V-1.png" type="image/x-icon">
-    
+
+    <script language="javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <title>Innovative Transport | <?php echo $nombre_pagina ?></title>
 </head>
+
 <body onload="startTime()">
     <?php if ($video == 1) { ?>
         <div class="contenido">
@@ -107,38 +114,38 @@ error_reporting(0);
                                     <!-- Hacer validacion que identifique los tipos de roles para mostrar determinados servicios -->
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    <!-- Primera validacion es donde el cliente Estudiante y usuario tendran las mismas acciones  -->
+                                        <!-- Primera validacion es donde el cliente Estudiante y usuario tendran las mismas acciones  -->
                                         <?php if ($_SESSION['idTUsuario'] == 2 || $_SESSION['idTUsuario'] == 3) { ?>
-                                            <li><a class="dropdown-item" href="<?= base_url?>user/facturas.php"><i class="bi bi-receipt"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url ?>user/facturas.php"><i class="bi bi-receipt"></i>
                                                     Facturas</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="<?= base_url?>user/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url ?>user/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
                                                     Boletos</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url?>ususario/horarios.php"><i class="bi bi-clock"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url ?>ususario/horarios.php"><i class="bi bi-clock"></i>
                                                     Horarios</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url?>ususario/rutas"><i class="bi bi-map"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url ?>ususario/rutas"><i class="bi bi-map"></i>
                                                     Rutas</a></li>
-                                    <!-- Segunda validacion es donde se valida que el usuario sea trabajador donde tendra acceso a crear boletos -->
+                                            <!-- Segunda validacion es donde se valida que el usuario sea trabajador donde tendra acceso a crear boletos -->
                                         <?php } elseif ($_SESSION['idTUsuario'] == 1) { ?>
-                                            <li><a class="dropdown-item" href="<?= base_url?>ususario/facturas"><i class="bi bi-ticket-detailed"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url ?>ususario/facturas"><i class="bi bi-ticket-detailed"></i>
                                                     Boletos</a></li>
-                                    <!-- Primera validacion es donde se valida que el usuario sea administrador para tener acceso a todos los servicios  -->
+                                            <!-- Primera validacion es donde se valida que el usuario sea administrador para tener acceso a todos los servicios  -->
                                         <?php } elseif ($_SESSION['idTUsuario'] == 4) { ?>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/Facturas.php?pagina=1"><i class="bi bi-receipt"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/Facturas.php?pagina=1"><i class="bi bi-receipt"></i>
                                                     Facturas</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/Clientes.php?pagina=1"><i class="bi bi-person-circle"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/Clientes.php?pagina=1"><i class="bi bi-person-circle"></i>
                                                     Clientes</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/facturas"><i class="bi bi-person-circle"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/facturas"><i class="bi bi-person-circle"></i>
                                                     Trabajadores</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/facturas"><i class="bi bi-mortarboard"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/facturas"><i class="bi bi-mortarboard"></i>
                                                     Escuelas</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/horarios"><i class="bi bi-clock"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/horarios"><i class="bi bi-clock"></i>
                                                     Horarios</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/rutas"><i class="bi bi-map"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/rutas"><i class="bi bi-map"></i>
                                                     Rutas</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin?>/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
                                                     Boletos</a></li>
                                         <?php } ?>
                                     </ul>
@@ -150,69 +157,69 @@ error_reporting(0);
                     <?php if (isset($_SESSION['login']) == 1) { ?>
                         <li class="nav-item dropdown" style="list-style: none;">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="rounded-circle" width="50px" height="auto" src="<?php echo $_SESSION['img']; ?>" alt="">
+                                <img class="rounded-circle" width="50px" height="auto" src="<?=base_url?>uploads/<?php echo $_SESSION['img'] ?>" alt="">
                                 <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellidos']; ?>
                             </a>
                             <!-- Hacer validacion que identifique los tipos de roles para mostrar determinados servicios -->
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <?php if ($_SESSION['idTUsuario'] == 2 || $_SESSION['idTUsuario'] == 3) { ?>
-                                    <li><a class="dropdown-item" href="<?= base_url?>user/settings.php"><i class="bi bi-gear"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>user/settings.php"><i class="bi bi-gear"></i>
                                             Setting</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= base_url?>ususario/facturas"><i class="bi bi-question-circle"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>ususario/facturas"><i class="bi bi-question-circle"></i>
                                             Help</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= base_url?>user/panel.php"><i class="bi bi-person-circle"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>user/panel.php"><i class="bi bi-person-circle"></i>
                                             Your Profile</a>
                                     </li>
                                 <?php } elseif ($_SESSION['idTUsuario'] == 1) { ?>
-                                    <li><a class="dropdown-item" href="<?= base_url?>user/settings.php"><i class="bi bi-gear"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>user/settings.php"><i class="bi bi-gear"></i>
                                             Setting</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= base_url?>ususario/facturas"><i class="bi bi-question-circle"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>ususario/facturas"><i class="bi bi-question-circle"></i>
                                             Help</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= base_url?>ususario/facturas"><i class="bi bi-person-circle"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>ususario/facturas"><i class="bi bi-person-circle"></i>
                                             Your Profile</a>
                                     </li>
                                 <?php } elseif ($_SESSION['idTUsuario'] == 4) { ?>
 
-                                    <li><a class="dropdown-item" href="<?= base_url?>user/settings.php"><i class="bi bi-gear"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>user/settings.php"><i class="bi bi-gear"></i>
                                             Setting</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= base_url?>ususario/facturas"><i class="bi bi-question-circle"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>ususario/facturas"><i class="bi bi-question-circle"></i>
                                             Help</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= base_url?>user/panel.php"><i class="bi bi-person-circle"></i>
+                                    <li><a class="dropdown-item" href="<?= base_url ?>user/panel.php"><i class="bi bi-person-circle"></i>
                                             Your Profile</a>
                                     </li>
-                                    
-                                        <hr class="dropdown-divider">
-                                    </li>
 
-                                <?php } ?>
-                                <li><a class="dropdown-item" href="<?= base_url ?>user/procesos/salir.php"><i class="bi bi-door-open"></i> Sign out</a></li>
-                                <li>
                                     <hr class="dropdown-divider">
-                                </li>
-                                <?php
-                                if ($_SESSION['idEscuela'] == '') {
-                                } else {
-                                    $queryescuelas = 'SELECT nombre,img FROM escuelas WHERE idEscuela = ' . $_SESSION['idEscuela'];
-                                    $escuelas = mysqli_query($conexion, $queryescuelas);
-                                    $row_escuelas = mysqli_fetch_assoc($escuelas);
-
-                                ?>
-                                    <li><img src="<?php echo $row_escuelas['img'] ?> " style="width: 152px; padding: 4px;" alt=""></li>
-                                <?php } ?>
-                            </ul>
                         </li>
-                    <?php } else { ?>
-                        <div class="user-actions">
-                            <li><a href="<?= base_url ?>user/login.php"><i class="bi bi-person-fill"></i> Login</a></li>
-                            <li><a href="<?= base_url ?>user/signup.php"><i class="bi bi-person-plus-fill"></i> Sign Up</a></li>
-                        </div>
+
                     <?php } ?>
+                    <li><a class="dropdown-item" href="<?= base_url ?>user/procesos/salir.php"><i class="bi bi-door-open"></i> Sign out</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <?php
+                        if ($_SESSION['idEscuela'] == '') {
+                        } else {
+                            $queryescuelas = 'SELECT nombre,img FROM escuelas WHERE idEscuela = ' . $_SESSION['idEscuela'];
+                            $escuelas = mysqli_query($conexion, $queryescuelas);
+                            $row_escuelas = mysqli_fetch_assoc($escuelas);
+
+                    ?>
+                        <li><img src="<?php echo $row_escuelas['img'] ?> " style="width: 152px; padding: 4px;" alt=""></li>
+                    <?php } ?>
+                    </ul>
+                    </li>
+                <?php } else { ?>
+                    <div class="user-actions">
+                        <li><a href="<?= base_url ?>user/login.php"><i class="bi bi-person-fill"></i> Login</a></li>
+                        <li><a href="<?= base_url ?>user/signup.php"><i class="bi bi-person-plus-fill"></i> Sign Up</a></li>
+                    </div>
+                <?php } ?>
                 </div>
             </div>
         </nav>
