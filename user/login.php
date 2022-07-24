@@ -12,6 +12,7 @@
     $pagina_modificacion = 0;
     $pagina = 0;
     $video = 0;
+    $nombre_pagina = "Login";
     require_once '../includes/header.php';
 ?>
 
