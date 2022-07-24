@@ -4,10 +4,7 @@ if (session_start()) {
     session_start();
 }
 
-if ($_SESSION['idTUsuario'] != 1) {
-} else {
-    header('Location: ../user/panel.php');
-}
+
 $pagina = 0;
 $pagina_admin = 2;
 $video = 0;
