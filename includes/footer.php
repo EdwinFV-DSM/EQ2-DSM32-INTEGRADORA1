@@ -82,15 +82,14 @@
 <script src="<?= base_url?>assets/js/custom.js"></script>
 <script src="<?= base_url?>assets/js/app.js"></script>
 <script src="<?= base_url?>assets/js/modificar_boleto.js"></script>
-<<<<<<< HEAD
-<!-- <script src="<?= base_url?>assets/js/jquery-3.6.0.min.js"></script> -->
-=======
 <script src="<?= base_url?>assets/js/signup.js"></script>
->>>>>>> 34146ae83cffa93ec8259e702b06528dfc494d04
+<script src="<?= base_url ?>assets/js/password.js"></script>
+<!-- <script src="<?= base_url?>assets/js/jquery-3.6.0.min.js"></script> -->
 <script src="<?= base_url_admin?>/assets/js/crear_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_cliente.js"></script>
 <script src="<?= base_url_admin?>/assets/js/crear_cliente.js"></script>
+<script src="<?= base_url_admin?>/assets/js/crear_escuela.js"></script>
 <script src="<?= base_url_admin?>/assets/js/facturacion.js"></script>
 
 </body>
