@@ -147,6 +147,9 @@ saber para empezar a desarrollar páginas web y aplicaciones web.">
                                                     Rutas</a></li>
                                             <li><a class="dropdown-item" href="<?= base_url_admin ?>/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
                                                     Boletos</a></li>
+                                        <?php }elseif ($_SESSION['idTUsuario'] == 5) { ?>
+                                          <li><a class="dropdown-item" href="<?= base_url_admin ?>/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
+                                          Estudiantes</a></li>
                                         <?php } ?>
                                     </ul>
                                 </li>
