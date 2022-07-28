@@ -114,11 +114,15 @@ $total_facturas_db_aprobadas = $sentencia->rowCount();
         </div>
     </div>
 </div>
-<h1 style="text-align: center; color: black;"><?php if ($_SESSION['sexo'] == 'F') {
-                                    echo 'Bienvenida ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
-                                } else {
-                                    echo 'Bienvenido ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
-                                } ?></h1>
+<h1 style="text-align: center; color: black;"><?php 
+if (isset($_SESSION['sexo'] )) {
+    if ($_SESSION['sexo'] == 'F') {
+        echo 'Bienvenida ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
+    } else {
+        echo 'Bienvenido ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
+    }
+} else {echo $_SESSION ['nombre'];}
+ ?></h1>
 
 
 <section class="cards-info">
