@@ -11,6 +11,7 @@ if ($_SESSION['idTUsuario'] == 4) {
 $pagina = 0;
 $pagina_admin = 2;
 $video = 0;
+$nombre_pagina = "Facturas";
 require_once '../includes/header.php';
 
 $facturas = 'SELECT * FROM facturas';
