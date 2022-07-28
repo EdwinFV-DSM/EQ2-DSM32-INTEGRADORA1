@@ -41,6 +41,12 @@ facturacion.addEventListener('submit',  function(e) {
                 'Hubo un error al guardar el status',
                 'error'
               )
+        }else if(data === 'error-pago'){
+            Swal.fire(
+                'Error',
+                'El boleto todavia no se encuentra pagado',
+                'error'
+              )
         }else{
             Swal.fire(
                 'Success',
