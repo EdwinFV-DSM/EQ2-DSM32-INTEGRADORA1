@@ -1,9 +1,4 @@
 <?php 
-    if (session_start()) {
-    
-    }else{
-        session_start();
-    }
     if(isset($_SESSION['login']) == 1){
         //echo $_SESSION['login'];
         header('Location: panel.php');
@@ -39,8 +34,8 @@
                         <input type="submit" value="Ingresar" class="btn btn-success">
                       </div>              
                       <div class="options">
-                        <p>Olvide mi <a href="">contaseña</a></p>
-                      <p>¿No tienes una cuenta? <a href="">Crear una</a></p>
+                        <p>Olvide mi <a href="<?= base_url?>user/Password_retrieve.php">contaseña</a></p>
+                      <p>¿No tienes una cuenta? <a href="<?= base_url?>user/signup.php">Crear una</a></p>
                       </div>                              
                   </form>
               </div>
