@@ -1,8 +1,5 @@
 <?php
-if (session_start()) {
-} else {
-    session_start();
-}
+session_start();
 if (isset($_SESSION['login']) != 1) {
     //echo $_SESSION['login'];
     header('Location: login.php');
@@ -110,7 +107,7 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
                 </div>
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputCity" value="<?php echo $row_cliente['password']; ?>" name="password">
+                    <input type="password" class="form-control" id="inputCity" value="" name="password">
                 </div>
                 <div class="col-2">
                     <label for="inputZip" class="form-label">Descuento</label>
@@ -120,13 +117,17 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
                     <button type="submit" class="btn btn-primary" name="Guardar"><i class="fa fa-save"></i> Save</button>
                 </div>
             </form>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Warning!</strong> Llenar el campo de password si es que desea cambiar la contraseña, de lo contrario no lo llene
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         </div>
     </div>
 </section>
 
-<?php 
+<?php
 
-if(isset($_POST['Guardar'])){
+if (isset($_POST['Guardar'])) {
     $imagen = $_FILES['imagen']['name'];
     $idCliente = $_SESSION['idCliente'];
 
@@ -142,6 +143,7 @@ if(isset($_POST['Guardar'])){
     $password = $_POST['password'];
     $codigoPostal = $_POST['cp'];
 
+    $password_encriptada = password_hash($password,PASSWORD_DEFAULT);
 
     $idEscuela = $_SESSION['idEscuela'];
     $idTUsuario = $_SESSION['idTUsuario'];
@@ -152,55 +154,55 @@ if(isset($_POST['Guardar'])){
     $dateModificacion = date('Y-m-d H:i:s');
 
     $alert;
-    if(isset($imagen) && $imagen != ""){
+    if (isset($imagen) && $imagen != "") {
         $tipo = $_FILES['imagen']['type'];
         $temp  = $_FILES['imagen']['tmp_name'];
 
-       if( !((strpos($tipo,'gif') || strpos($tipo,'jpeg') || strpos($tipo,'webp') || strpos($tipo,'jpg')))){
-        $alert = "'<script>Swal.fire(
+        if (!((strpos($tipo, 'gif') || strpos($tipo, 'jpeg') || strpos($tipo, 'webp') || strpos($tipo, 'jpg')))) {
+            $alert = "'<script>Swal.fire(
             'Error',
             'Solo se permite archivos jpeg, gif, webp',
             'error'
           )</script>'";
-          header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
-       }else{
-         $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
+            header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
+        } else {
+            $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
          `numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$codigoPostal',`idServicio`=1,`idEscuela`='$idEscuela',`Status`='$status',`Sexo`='$sexo',
-         `password`='$password',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =".$idCliente;
-         $resultado_update_cliente = mysqli_query($conexion,$query);
-         if($resultado_update_cliente){
-              move_uploaded_file($temp,'../uploads/'.$imagen);
-              $alert = "'<script>
+         `password`='$password_encriptada',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =" . $idCliente;
+            $resultado_update_cliente = mysqli_query($conexion, $query);
+            if ($resultado_update_cliente) {
+                move_uploaded_file($temp, '../uploads/' . $imagen);
+                $alert = "'<script>
               Swal.fire({
                 icon: 'success',
                 title: 'Se ha modificado correctamente',
                 text: 'Los cambios se mostraran en el proximo inicio de sesion'
                 
               })</script>'";
-             header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
-         }else{
-            $alert = "'<script>Swal.fire(
+                header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
+            } else {
+                $alert = "'<script>Swal.fire(
                 'Error',
                 'ocurrio un error en el servidor',
                 'error'
               )</script>'";
-         }
-       }
-    }else{
+            }
+        }
+    } else {
         $imagen = $row_cliente['img'];
         $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
         `numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$codigoPostal',`idServicio`=1,`idEscuela`='$idEscuela',`Status`='$status',`Sexo`='$sexo',
-        `password`='$password',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =".$idCliente;
-        $resultado_update_cliente = mysqli_query($conexion,$query);
-        if($resultado_update_cliente){
-             $alert = "'<script>
+        `password`='$password',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =" . $idCliente;
+        $resultado_update_cliente = mysqli_query($conexion, $query);
+        if ($resultado_update_cliente) {
+            $alert = "'<script>
              Swal.fire({
                 icon: 'success',
                 title: 'Success',
                 text: 'Se ha modificado correctamente'
                
              })</script>'";
-            }
+        }
     }
     echo $alert;
 }
