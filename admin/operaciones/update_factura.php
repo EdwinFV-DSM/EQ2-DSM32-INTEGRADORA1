@@ -1,7 +1,7 @@
 <?php
 
 require '../../config/ConexionDB.php';
-
+error_reporting(0);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -9,6 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../../Libraries/gmail/vendor/autoload.php';
 $mail = new PHPMailer(true);
+
+$ticket;
 
 if ($_POST) {
     if ($_POST['status'] == '' || $_POST['status'] == ' ') {
@@ -160,6 +162,7 @@ if ($_POST) {
                 echo 'Mensaje ' . $mail->ErrorInfo;
             }
         } elseif ($_POST['status'] == 3) {
+            $ticket;
             /** La factura fue aprobada*/
             $queryTickets = "SELECT * FROM tickets WHERE N_Operacion =" . $_POST['operacion'];
             $tickets = mysqli_query($conexion, $queryTickets);
@@ -299,18 +302,18 @@ if ($_POST) {
             $querypago = "SELECT * FROM pago WHERE idTicket =" . $idTickets;
             $pago = mysqli_query($conexion, $querypago);
             $pagos = mysqli_fetch_assoc($pago);
-            // if ($pago) {
-            //     echo "Se realizo correctamente <br>";
-            //     var_dump($pagos);
-            // } else {
-            // }
 
             //Aqui inicia el for con todos los productos
             $pdf->Cell(20, 7, $row_tickets['N_Operacion'], 1, 0, 'L', 0);
             $pdf->Cell(95, 7, utf8_decode($row_facturas['Producto']), 1, 0, 'L', 0);
             $pdf->Cell(20, 7, utf8_decode('1'), 1, 0, 'R', 0);
             $pdf->Cell(25, 7, utf8_decode($row_tickets['costo']), 1, 0, 'R', 0);
-            $pdf->Cell(25, 7, $pagos['total'], 1, 1, 'R', 0);
+            if ($pagos['status'] == 'COMPLETED') {
+                $pdf->Cell(25, 7, $pagos['total'], 1, 1, 'R', 0);
+            } else {
+                echo json_encode('error-pago');
+            }
+
 
 
             //// Apartir de aqui esta la tabla con los subtotales y totales
@@ -325,72 +328,77 @@ if ($_POST) {
             } else {
                 $descuent = "No Aplica";
             }
+            if ($pagos['status'] == 'COMPLETED') {
+                $pdf->setX(95);
+                $pdf->Cell(40, 6, 'Descuento', 1, 0);
+                $pdf->Cell(60, 6, $descuent, '1', 1, 'R');
+                $pdf->setX(95);
+                $pdf->Cell(40, 6, 'Impuesto', 1, 0);
+                $pdf->Cell(60, 6, 'NA', '1', 1, 'R');
+                $pdf->setX(95);
+                $pdf->Cell(40, 6, 'Total', 1, 0);
+                if (isset($pagos_pagados)) {
+                } else {
+                    $pdf->Cell(60, 6, $pagos['total'], '1', 1, 'R');
+                }
 
-            $pdf->setX(95);
-            $pdf->Cell(40, 6, 'Descuento', 1, 0);
-            $pdf->Cell(60, 6, $descuent, '1', 1, 'R');
-            $pdf->setX(95);
-            $pdf->Cell(40, 6, 'Impuesto', 1, 0);
-            $pdf->Cell(60, 6, 'NA', '1', 1, 'R');
-            $pdf->setX(95);
-            $pdf->Cell(40, 6, 'Total', 1, 0);
-            $pdf->Cell(60, 6, $pagos['total'], '1', 1, 'R');
 
 
 
-            $pdf_document = 'Factura_' . $row_tickets['N_Operacion'] . '.pdf';
+                $pdf_document = 'Factura_' . $row_tickets['N_Operacion'] . '.pdf';
 
-            $pdf->Output('F', '../../temp_pdf/Factura_' . $row_tickets['N_Operacion'] . '.pdf');
+                $pdf->Output('F', '../../temp_pdf/Factura_' . $row_tickets['N_Operacion'] . '.pdf');
 
-            $updateFactura = "UPDATE `facturas` SET `idCliente`='$idCliente',`Producto`='$Producto',`costo`='$costo',`fechaC`='$solicitada',`idTicket`='$idTicket',`status`='$status',`dateProceso`='$dateProceso',`dateAprobada`='$dateAprobada',`dateRechazada`=NULL,`pdf_factura`='$pdf_document'  WHERE idTicket =" . $row_facturas['idTicket'];
-            $ticket = mysqli_query($conexion, $updateFactura);
+                $updateFactura = "UPDATE `facturas` SET `idCliente`='$idCliente',`Producto`='$Producto',`costo`='$costo',`fechaC`='$solicitada',`idTicket`='$idTicket',`status`='$status',`dateProceso`='$dateProceso',`dateAprobada`='$dateAprobada',`dateRechazada`=NULL,`pdf_factura`='$pdf_document'  WHERE idTicket =" . $row_facturas['idTicket'];
+                $ticket = mysqli_query($conexion, $updateFactura);
 
-            if ($status == 1) {
-                $statusEmail = 'Solicitada';
-            } elseif ($status == 2) {
-                $statusEmail = 'En proceso...';
-            } elseif ($status == 3) {
-                $statusEmail = 'Aprobada';
-            } elseif ($status == 4) {
-                $statusEmail = 'Rechazada';
-            }
-            /**Envio de correo cuando el status en solicitada */
-            try {
-                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'preparatoriasno.33@gmail.com';
-                $mail->Password = 'imoqwgaobzjvisvp';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port = 465;
+                if ($status == 1) {
+                    $statusEmail = 'Solicitada';
+                } elseif ($status == 2) {
+                    $statusEmail = 'En proceso...';
+                } elseif ($status == 3) {
+                    $statusEmail = 'Aprobada';
+                } elseif ($status == 4) {
+                    $statusEmail = 'Rechazada';
+                }
+                /**Envio de correo cuando el status en solicitada */
+                try {
+                    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'preparatoriasno.33@gmail.com';
+                    $mail->Password = 'imoqwgaobzjvisvp';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                    $mail->Port = 465;
 
-                $mail->setFrom('preparatoriasno.33@gmail.com', 'Innovative Transport');
-                $mail->addAddress('al222110833@gmail.com');
-                // $mail->addCC('copia@gmail.com') para mandar copia de correo
+                    $mail->setFrom('preparatoriasno.33@gmail.com', 'Innovative Transport');
+                    $mail->addAddress('al222110833@gmail.com');
+                    // $mail->addCC('copia@gmail.com') para mandar copia de correo
 
-                $email_template = 'email.html';
+                    $email_template = 'email.html';
 
-                $mail->isHTML(true);
-                $mail->Subject = 'Seguimiento de Factura';
-                $message = file_get_contents($email_template);
-                $message = str_replace('%N_Operacion%', $_POST['operacion'], $message);
-                $message = str_replace('%cliente%', $row_cliente['nombre'] . ' ' . $row_cliente['apellidos'], $message);
-                $message = str_replace('%solicitud%', $solicitada, $message);
-                $message = str_replace('%TUsuario%', $row_TUsuario['nombreUsuario'], $message);
-                $message = str_replace('%email%', $row_cliente['email'], $message);
-                $message = str_replace('%telefono%', $row_cliente['telefono'], $message);
-                $message = str_replace('%status%', $statusEmail, $message);
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Seguimiento de Factura';
+                    $message = file_get_contents($email_template);
+                    $message = str_replace('%N_Operacion%', $_POST['operacion'], $message);
+                    $message = str_replace('%cliente%', $row_cliente['nombre'] . ' ' . $row_cliente['apellidos'], $message);
+                    $message = str_replace('%solicitud%', $solicitada, $message);
+                    $message = str_replace('%TUsuario%', $row_TUsuario['nombreUsuario'], $message);
+                    $message = str_replace('%email%', $row_cliente['email'], $message);
+                    $message = str_replace('%telefono%', $row_cliente['telefono'], $message);
+                    $message = str_replace('%status%', $statusEmail, $message);
 
-                $mail->MsgHTML($message);
-                $mail->send();
-                // echo 'correo enviado';
-            } catch (Exception $e) {
-                echo 'Mensaje ' . $mail->ErrorInfo;
+                    $mail->MsgHTML($message);
+                    $mail->send();
+                    // echo 'correo enviado';
+                } catch (Exception $e) {
+                    echo 'Mensaje ' . $mail->ErrorInfo;
+                }
+            } else {
             }
         } elseif ($_POST['status'] == 4) {
             /** La factura fue rechazada*/
-            /** La factura fue aprobada*/
             $queryTickets = "SELECT * FROM tickets WHERE N_Operacion =" . $_POST['operacion'];
             $tickets = mysqli_query($conexion, $queryTickets);
             $row_tickets = mysqli_fetch_assoc($tickets);
@@ -463,11 +471,21 @@ if ($_POST) {
                 echo 'Mensaje ' . $mail->ErrorInfo;
             }
         }
+        $queryTickets = "SELECT * FROM tickets WHERE N_Operacion =" . $_POST['operacion'];
+        $tickets = mysqli_query($conexion, $queryTickets);
+        $row_tickets = mysqli_fetch_assoc($tickets);
 
+        $querypago = "SELECT * FROM pago WHERE idTicket =" . $row_tickets['idTicket'];
+        $pago = mysqli_query($conexion, $querypago);
+        $pagos = mysqli_fetch_assoc($pago);
         if ($ticket) {
-            echo json_encode('success');
+            if ($pagos['status'] == 'COMPLETED') {
+                echo json_encode('success');
+            } else {
+                echo json_encode('error-pago');
+            }
         } else {
-            echo json_encode('error-insertar');
+            // echo json_encode('error-insertar');
         }
     }
 }
