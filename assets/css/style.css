@@ -808,7 +808,6 @@ tr{
     font-weight: bold;
 }
 
-<<<<<<< HEAD
 .cards-info{
     width: 97%;
     padding-left: 42px;
@@ -843,8 +842,4 @@ tr{
 
 .info .compras h1{
     color: #e9a800;
-=======
-.signup{
-    display: flex;
->>>>>>> 34146ae83cffa93ec8259e702b06528dfc494d04
 }
