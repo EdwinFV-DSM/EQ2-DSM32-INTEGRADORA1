@@ -1,8 +1,4 @@
 <?php
-if (session_start()) {
-} else {
-    session_start();
-}
 $pagina_admin = 0;
 $pagina = 1;
 $video = 1;
