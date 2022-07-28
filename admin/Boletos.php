@@ -12,6 +12,7 @@ if ($_SESSION['idTUsuario']==4) {
 $pagina = 0;
 $pagina_admin = 2;
 $video = 0;
+$nombre_pagina = "Boletos";
 require_once '../includes/header.php';
 
 $tickets = 'SELECT * FROM tickets';
