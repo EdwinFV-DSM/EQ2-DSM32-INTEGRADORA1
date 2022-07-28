@@ -1,4 +1,6 @@
 <?php
+error_reporting(0);
+session_start();
 if ($pagina == 1) {
     require_once 'config/parameters.php';
     require_once 'config/ConexionDB.php';
@@ -7,6 +9,7 @@ if ($pagina == 1) {
     require_once '../config/ConexionDB.php';
     require_once '../admin/operaciones/crear_boleto.php';
     require_once '../admin/operaciones/crear_cliente.php';
+    require_once '../admin/operaciones/crear_escuela.php';
 } elseif ($pagina_modificacion == 1) {
     require_once '../../config/parameters.php';
 } elseif ($pagina_admin == 1) {
@@ -16,7 +19,7 @@ if ($pagina == 1) {
     require_once '../config/parameters.php';
     require_once '../config/ConexionDB.php';
 }
-error_reporting(0);
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +58,7 @@ saber para empezar a desarrollar páginas web y aplicaciones web.">
 
     <!-- Favicon de la pagina -->
     <!-- <link rel="shortcut icon" href="<?= base_url ?>assets/img/Innovative Transport S.A de C.V (1).png" type="image/x-icon"> -->
-    <link rel="shortcut icon" href="https://i.postimg.cc/g0H4khWq/Innovative-Transport-S-A-de-C-V-1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://i.postimg.cc/g0H4khWq/Innovative-Transport-S-A-de-C-V-1.png" type="image/png">
 
     <script language="javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
@@ -138,15 +141,17 @@ saber para empezar a desarrollar páginas web y aplicaciones web.">
                                                     Clientes</a></li>
                                             <li><a class="dropdown-item" href="<?= base_url_admin ?>/facturas"><i class="bi bi-person-circle"></i>
                                                     Trabajadores</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/facturas"><i class="bi bi-mortarboard"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/Escuelas.php?pagina=1"><i class="bi bi-mortarboard"></i>
                                                     Escuelas</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/horarios"><i class="bi bi-clock"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/Horarios.php?pagina=1"><i class="bi bi-clock"></i>
                                                     Horarios</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/rutas"><i class="bi bi-map"></i>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/Rutas.php?pagina=1"><i class="bi bi-map"></i>
                                                     Rutas</a></li>
                                             <li><a class="dropdown-item" href="<?= base_url_admin ?>/boletos.php?pagina=1"><i class="bi bi-ticket-detailed"></i>
                                                     Boletos</a></li>
+                                            <li><a class="dropdown-item" href="<?= base_url_admin ?>/pagos.php?pagina=1"><i class="bi bi-currency-dollar"></i>
+                                                    Pagos</a></li>
                                         <?php } ?>
                                     </ul>
                                 </li>
@@ -157,7 +162,7 @@ saber para empezar a desarrollar páginas web y aplicaciones web.">
                     <?php if (isset($_SESSION['login']) == 1) { ?>
                         <li class="nav-item dropdown" style="list-style: none;">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="rounded-circle" width="50px" height="auto" src="<?=base_url?>uploads/<?php echo $_SESSION['img'] ?>" alt="">
+                                <img class="rounded-circle" width="50px" height="auto" src="<?= base_url ?>uploads/<?php echo $_SESSION['img'] ?>" alt="">
                                 <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellidos']; ?>
                             </a>
                             <!-- Hacer validacion que identifique los tipos de roles para mostrar determinados servicios -->
