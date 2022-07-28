@@ -1,9 +1,5 @@
 <?php 
-    if (session_start()) {
-    
-    }else{
-        session_start();
-    }
+    session_start();
     if(isset($_SESSION['login']) == 1){
         //echo $_SESSION['login'];
         header('Location: panel.php');
@@ -69,7 +65,7 @@
                                 <button type="submit" class="btn btn-primary">Sign in</button>
                             </div>
                             <div class="options">
-                                <p>Ya tengo cuenta <a href="">ingresar</a></p>
+                                <p>Ya tengo cuenta <a href="<?= base_url?>user/login.php">ingresar</a></p>
                             </div>
                         </form>
                     </div>
