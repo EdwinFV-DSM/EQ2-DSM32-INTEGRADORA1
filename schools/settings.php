@@ -1,20 +1,21 @@
 <?php
-
-if (isset($_SESSION['login']) != 1) {
-    //echo $_SESSION['login'];
-    header('Location: login.php');
-}
-if ($_SESSION['status'] == 0) {
-    $activo = 'Activo';
-} else {
-    $activo = 'Inactivo';
-}
 $pagina_modificacion = 0;
 $pagina_admin = 0;
 $video = 0;
 $pagina = 0;
 $nombre_pagina = "Settings";
 require_once '../includes/header.php';
+if (isset($_SESSION['login']) != 1) {
+    //echo $_SESSION['login'];
+    header('Location: ../login.php');
+}
+if ($_SESSION['idTUsuario'] == 1 || $_SESSION['idTUsuario'] == 2 || $_SESSION['idTUsuario'] == 3 || $_SESSION['idTUsuario'] == 4) {
+    if ($_SESSION['status'] == 0) {
+        $activo = 'Activo';
+    } else {
+        $activo = 'Inactivo';
+    }
+}
 ?>
 
 <section class="settings">
