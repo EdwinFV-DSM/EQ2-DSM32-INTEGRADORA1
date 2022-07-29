@@ -1,8 +1,5 @@
 <?php
-if (session_start()) {
-} else {
-    session_start();
-}
+
 if (isset($_SESSION['login']) != 1) {
     //echo $_SESSION['login'];
     header('Location: login.php');
