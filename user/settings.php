@@ -1,20 +1,24 @@
 <?php
-session_start();
-if (isset($_SESSION['login']) != 1) {
-    //echo $_SESSION['login'];
-    header('Location: login.php');
-}
-if ($_SESSION['status'] == 0) {
-    $activo = 'Activo';
-} else {
-    $activo = 'Inactivo';
-}
+
 $pagina_modificacion = 0;
 $pagina_admin = 0;
 $video = 0;
 $pagina = 0;
 $nombre_pagina = "Settings";
 require_once '../includes/header.php';
+if (isset($_SESSION['login']) != 1) {
+    //echo $_SESSION['login'];
+    header('Location: login.php');
+}
+
+if ($_SESSION['idTUsuario'] == 1 || $_SESSION['idTUsuario'] == 2 || $_SESSION['idTUsuario'] == 3 || $_SESSION['idTUsuario'] == 4) {
+    if ($_SESSION['status'] == 0) {
+        $activo = 'Activo';
+    } else {
+        $activo = 'Inactivo';
+    }
+}
+
 if ($_SESSION['idEscuela']) {
     $queryescuelas = 'SELECT nombre,img FROM escuelas WHERE idEscuela = ' . $_SESSION['idEscuela'];
     $escuelas = mysqli_query($conexion, $queryescuelas);
@@ -50,8 +54,8 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-            " enctype="multipart/form-data" action="settings.php" method="POST">
-                <input type="file" name="imagen">
+            " enctype="multipart/form-data" id="formulario-settings">
+                <input type="file" name="imagen" class="form-control" id="exampleInputPassword1">
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="inputEmail4" value="<?php echo $row_cliente['nombre']; ?>" name="nombre">
@@ -114,7 +118,7 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
                     <input type="text" class="form-control" id="inputZip" value="<?php echo $activo ?>" disabled>
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary" name="Guardar"><i class="fa fa-save"></i> Save</button>
+                    <input type="submit" class="btn btn-primary" value="Save">
                 </div>
             </form>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -124,89 +128,5 @@ $row_TUsuario = mysqli_fetch_assoc($TUsuario);
         </div>
     </div>
 </section>
-
-<?php
-
-if (isset($_POST['Guardar'])) {
-    $imagen = $_FILES['imagen']['name'];
-    $idCliente = $_SESSION['idCliente'];
-
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $email = $_POST['email'];
-    $telefono = $_POST['telefono'];
-    $calle = $_POST['calle'];
-    $numInt = $_POST['numInt'];
-    $numExt = $_POST['numExt'];
-    $municipio = $_POST['municipio'];
-    $fechaNac = $_POST['fechaNac'];
-    $password = $_POST['password'];
-    $codigoPostal = $_POST['cp'];
-
-    $password_encriptada = password_hash($password,PASSWORD_DEFAULT);
-
-    $idEscuela = $_SESSION['idEscuela'];
-    $idTUsuario = $_SESSION['idTUsuario'];
-    $status = $_SESSION['status'];
-    $sexo = $_SESSION['sexo'];
-    $dateCreacion = $_SESSION['dateCreacion'];
-
-    $dateModificacion = date('Y-m-d H:i:s');
-
-    $alert;
-    if (isset($imagen) && $imagen != "") {
-        $tipo = $_FILES['imagen']['type'];
-        $temp  = $_FILES['imagen']['tmp_name'];
-
-        if (!((strpos($tipo, 'gif') || strpos($tipo, 'jpeg') || strpos($tipo, 'webp') || strpos($tipo, 'jpg')))) {
-            $alert = "'<script>Swal.fire(
-            'Error',
-            'Solo se permite archivos jpeg, gif, webp',
-            'error'
-          )</script>'";
-            header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
-        } else {
-            $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
-         `numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$codigoPostal',`idServicio`=1,`idEscuela`='$idEscuela',`Status`='$status',`Sexo`='$sexo',
-         `password`='$password_encriptada',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =" . $idCliente;
-            $resultado_update_cliente = mysqli_query($conexion, $query);
-            if ($resultado_update_cliente) {
-                move_uploaded_file($temp, '../uploads/' . $imagen);
-                $alert = "'<script>
-              Swal.fire({
-                icon: 'success',
-                title: 'Se ha modificado correctamente',
-                text: 'Los cambios se mostraran en el proximo inicio de sesion'
-                
-              })</script>'";
-                header('location: http://localhost/EQ2-DSM32-INTEGRADORA1/user/settings.php');
-            } else {
-                $alert = "'<script>Swal.fire(
-                'Error',
-                'ocurrio un error en el servidor',
-                'error'
-              )</script>'";
-            }
-        }
-    } else {
-        $imagen = $row_cliente['img'];
-        $query = "UPDATE `cliente` SET `nombre`='$nombre',`apellidos`='$apellidos',`fechaNac`='$fechaNac',`idTUsuario`='$idTUsuario',`email`='$email',`telefono`='$telefono',`calle`='$calle',
-        `numExt`='$numExt',`numInt`='$numInt',`municipio`='$municipio',`codigoPostal`='$codigoPostal',`idServicio`=1,`idEscuela`='$idEscuela',`Status`='$status',`Sexo`='$sexo',
-        `password`='$password',`dateCreacion`='$dateCreacion',`dateModificacion`='$dateModificacion',`dateEliminacion`=NULL,`img`='$imagen' WHERE idCliente =" . $idCliente;
-        $resultado_update_cliente = mysqli_query($conexion, $query);
-        if ($resultado_update_cliente) {
-            $alert = "'<script>
-             Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Se ha modificado correctamente'
-               
-             })</script>'";
-        }
-    }
-    echo $alert;
-}
-
-?>
 
 <?php require_once '../includes/footer.php'; ?>
