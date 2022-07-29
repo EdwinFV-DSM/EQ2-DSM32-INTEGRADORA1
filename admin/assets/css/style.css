@@ -1,0 +1,80 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    top: 0px;
+}
+
+.contenido-admin{
+    padding: 20px;
+}
+.contenido-admin h1{
+    color: #E9BF57;
+}
+
+.action-crear-search{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.contenido .cards{
+    width: 90% !important;
+    height: auto;
+}
+
+.carts{
+    width: 20%;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.contenido-cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.contenido-cards i{
+    font-size: 300%;
+}
+
+.navbar-brand {
+    padding-top: var(--bs-navbar-brand-padding-y) !important;
+    padding-bottom: var(--bs-navbar-brand-padding-y) !important;
+    margin-right: var(--bs-navbar-brand-margin-end) !important;
+    font-size: var(--bs-navbar-brand-font-size) !important;
+    color: var(--bs-navbar-brand-color) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+.consulta-factura{
+    padding-block-start: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.consulta-factura h1{
+    text-align: center;
+    color: #E9BF57;
+}
+
+.contenido-ticket{
+    width: 60%;
+    text-align: center;
+}
+
+.datos-cliente{
+    width: 37%;
+}
