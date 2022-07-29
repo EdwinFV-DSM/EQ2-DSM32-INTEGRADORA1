@@ -152,6 +152,10 @@ saber para empezar a desarrollar páginas web y aplicaciones web.">
                                                     Boletos</a></li>
                                             <li><a class="dropdown-item" href="<?=base_url_admin?>/pagos.php?pagina=1"><i class="bi bi-currency-dollar"></i>
                                                     Pagos</a></li>
+                                        <?php }elseif ($_SESSION['idTUsuario'] == 5) {?>
+                                            <li><a class="dropdown-item" href="<?=base_url_admin?>/Facturas.php?pagina=1"><i class="bi bi-receipt"></i>
+                                                    Estudiantes</a>
+                                            </li>
                                         <?php }?>
                                     </ul>
                                 </li>
@@ -172,11 +176,21 @@ saber para empezar a desarrollar páginas web y aplicaciones web.">
                             </a>
                             <!-- Hacer validacion que identifique los tipos de roles para mostrar determinados servicios -->
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <?php
-if (isset($_SESSION['login']) == 1) {
-    ?>
+                                <?php if (isset($_SESSION['login']) == 1 && $_SESSION['idTUsuario'] < 5) {?>
 
                                     <li><a class="dropdown-item" href="<?=base_url?>user/settings.php"><i class="bi bi-gear"></i>
+                                            Setting</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="<?=base_url?>ususario/facturas"><i class="bi bi-question-circle"></i>
+                                            Help</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="<?=base_url?>user/panel.php"><i class="bi bi-person-circle"></i>
+                                            Your Profile</a>
+                                    </li>
+                                    <hr class="dropdown-divider">
+                                    <?php }elseif ($_SESSION['idTUsuario'] == 5){?>
+
+                                    <li><a class="dropdown-item" href="<?=base_url_escuela?>/settings.php"><i class="bi bi-gear"></i>
                                             Setting</a>
                                     </li>
                                     <li><a class="dropdown-item" href="<?=base_url?>ususario/facturas"><i class="bi bi-question-circle"></i>
@@ -195,13 +209,12 @@ if (isset($_SESSION['login']) == 1) {
                         <hr class="dropdown-divider">
                     </li>
                     <?php
-if ($_SESSION['idEscuela'] == '') {
-} else {
-    $queryescuelas = 'SELECT nombre,img FROM escuelas WHERE idEscuela = ' . $_SESSION['idEscuela'];
-    $escuelas = mysqli_query($conexion, $queryescuelas);
-    $row_escuelas = mysqli_fetch_assoc($escuelas);
-
-    ?>
+                        if ($_SESSION['idEscuela'] == '') {
+                        } else {
+                            $queryescuelas = 'SELECT nombre,img FROM escuelas WHERE idEscuela = ' . $_SESSION['idEscuela'];
+                            $escuelas = mysqli_query($conexion, $queryescuelas);
+                            $row_escuelas = mysqli_fetch_assoc($escuelas);
+                    ?>
                         <li><img src="<?php echo $row_escuelas['img'] ?> " style="width: 152px; padding: 4px;" alt=""></li>
                     <?php }?>
                     </ul>
