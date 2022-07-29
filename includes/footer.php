@@ -84,6 +84,7 @@
 <script src="<?= base_url?>assets/js/modificar_boleto.js"></script>
 <script src="<?= base_url?>assets/js/signup.js"></script>
 <script src="<?= base_url ?>assets/js/password.js"></script>
+<script src="<?= base_url ?>assets/js/settings.js"></script>
 <!-- <script src="<?= base_url?>assets/js/jquery-3.6.0.min.js"></script> -->
 <script src="<?= base_url_admin?>/assets/js/crear_boleto.js"></script>
 <script src="<?= base_url_admin?>/assets/js/modificar_boleto.js"></script>
